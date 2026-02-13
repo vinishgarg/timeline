@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vinish Garg—Visual Biography</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Prevent horizontal overflow globally */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #ffffe4ff;
+            color: #e8e8e8;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            padding: 40px;
+        }
+        
+        /* LEFT SIDE - NARRATIVE */
+        .narrative {
+            background: rgb(244, 251, 253);
+            padding: 40px 30px;
+            border-right: 2px solid #dddcdc;
+            position: sticky;
+            top: 0;
+            height: fit-content;
+        }
+        
+        .narrative h1 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #666;
+            border-bottom: 1px solid #c8c7c7;
+            padding-bottom: 15px;
+        }
+        
+        .narrative-section {
+            margin-bottom: 22px;
+            padding: 16px;
+            background: #252525;
+            border-left: 2px solid #5F9EA0;
+            border-radius: 6px;
+        }
+        
+        .narrative-section p {
+            font-size: 15px;
+            line-height: 1.4;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+        
+        .narrative-section.highlight {
+            background: #2d2520;
+            border-left-color: #7FCDCD;
+        }
+        
+        .symbol {
+            font-size: 24px;
+            text-align: center;
+            margin: 20px 0;
+            opacity: 0.7;
+        }
+        
+        .tomato {
+            font-size: 48px;
+            text-align: center;
+            margin: 6px 0;
+        }
+        
+        /* RIGHT SIDE - VISUALIZATIONS */
+        .visualizations {
+            padding: 20px;
+        }
+        
+        .viz-section {
+            background: #fdfcf8;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            color: #333;
+            overflow: visible;
+            box-shadow: 4px 4px 4px 1px rgb(124 162 170 / 30%);
+        }
+        
+        .viz-section h2 {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        
+        .timeline {
+            position: relative;
+            height: 120px;
+            margin: 20px 0;
+        }
+        
+        .timeline-axis {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #999;
+        }
+        
+        .timeline-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #555;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+        
+        .map-container {
+            position: relative;
+            height: 140px;
+            background: #d4cbb8;
+            border-radius: 4px;
+            padding: 20px;
+        }
+        
+        .location-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #8b4513;
+            border-radius: 50%;
+        }
+        
+        .location-label {
+            position: absolute;
+            font-size: 11px;
+            color: #333;
+            font-style: normal;
+        }
+        
+        .connection-line {
+            position: absolute;
+            height: 2px;
+            background: #8b4513;
+            opacity: 0.4;
+        }
+        
+        /* Area Chart Visualization */
+        .area-chart {
+            position: relative;
+            height: 180px;
+            margin: 20px 0;
+        }
+        
+        .area-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0.7;
+        }
+        
+        .layer-label {
+            position: absolute;
+            font-size: 10px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        /* Bar Chart */
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            height: 140px;
+            gap: 3px;
+            padding: 10px 0;
+        }
+        
+        .bar {
+            flex: 1;
+            background: #87CEEB;
+            min-height: 10px;
+            position: relative;
+        }
+        
+        .bar.highlight {
+            background: #5F9EA0;
+        }
+        
+        /* Annotations */
+        .annotation {
+            position: absolute;
+            font-size: 11px;
+            color: #555;
+            font-style: normal;
+            font-weight:400;
+            max-width: 150px;
+            line-height: 1.3;
+        }
+        
+        /* Goals Section */
+        .goals {
+            background: #f9f8f4;
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        
+        .goals h2 {
+            font-size: 16px;
+            font-weight: bold;
+            
+            margin-bottom: 15px;
+            color: #222;
+        }
+        
+        .goal-item {
+            margin-bottom: 20px;
+        }
+        
+        .goal-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #222;
+        }
+        
+        .goal-item p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #444;
+        }
+        
+        .goal-credits p {
+            font-size: 12px;
+            line-height: 1.3;
+            color: #444;
+        }
+
+        /* Swim lanes for experiments */
+        .swim-lanes {
+            position: relative;
+            height: 200px;
+            margin: 20px 0;
+        }
+        
+        .swim-lane {
+            position: relative;
+            height: 25px;
+            margin-bottom: 5px;
+        }
+        
+        .lane-label {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            font-size: 12px;
+            color: #222;
+            width: 120px;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .lane-bar {
+            position: absolute;
+            height: 12px;
+            top: 6px;
+            background: #87CEEB;
+            border-radius: 2px;
+        }
+        
+        .lane-bar.active {
+            background: #4682B4; /* steel blue */
+        }
+        
+        .lane-bar.ended {
+            background: #5F9EA0; /* cadet blue */
+        }
+        
+        /* Links on bars - prevent wrapping and overflow */
+        .lane-bar a,
+        .swim-lane a,
+        div[style*="position: absolute"] a {
+            white-space: nowrap;
+            display: inline-block;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .narrative {
+                position: relative;
+                border-right: none;
+                border-bottom: 2px solid #444;
+            }
+        }
+        
+        /* Clickable milestones and tooltips */
+        .milestone {
+            position: relative;
+            cursor: pointer;
+            color: #4682B4; /* steel blue */
+            font-weight: bold;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+        
+        .milestone:hover {
+            color: #5F9EA0; /* cadet blue */
+        }
+        
+        .tooltip {
+            position: absolute;
+            display: none;
+            background: #2a2a2a;
+            color: #e8e8e8;
+            padding: 15px;
+            border-radius: 6px;
+            border: 2px solid #4682B4; /* steel blue */
+            width: 280px;
+            z-index: 1000;
+            font-size: 12px;
+            line-height: 1.5;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        /* Mobile tooltip positioning fix - prevent edge truncation */
+        @media (max-width: 768px) {
+            .tooltip {
+                left: 10px;
+                right: 10px;
+                transform: none;
+                width: auto;
+                max-width: calc(100vw - 40px);
+                margin: 0;
+            }
+            
+            .tooltip::after {
+                left: 30px;
+            }
+        }
+        
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -8px;
+            border-width: 8px;
+            border-style: solid;
+            border-color: #4682B4 transparent transparent transparent; /* steel blue */
+        }
+        
+        .milestone:hover .tooltip {
+            display: block;
+        }
+        
+        .info-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: #4682B4; /* steel blue */
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 16px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 5px;
+            position: relative;
+        }
+        
+        .info-icon:hover {
+            background: #5F9EA0; /* cadet blue */
+        }
+        
+        /* Links in tooltips */
+        .tooltip-link {
+            display: block;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid #444;
+            color: #7FCDCD; /* light aqua */
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .tooltip-link:hover {
+            color: #00CED1; /* aqua */
+            text-decoration: underline;
+        }
+        
+        /* Clickable visual elements */
+        .clickable-element {
+            cursor: pointer;
+            transition: opacity 0.2s ease, transform 0.1s ease;
+        }
+        
+        .clickable-element:hover {
+            opacity: 0.8;
+            transform: scale(1.02);
+        }
+        
+        .clickable-bar {
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.1s ease;
+        }
+        
+        .clickable-bar:hover {
+            filter: brightness(1.2);
+            transform: scaleY(1.05);
+        }
+        
+        .clickable-svg-path {
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+        
+        .clickable-svg-path:hover {
+            opacity: 0.85;
+            stroke-width: 2;
+        }
+        
+        /* ========================================
+           RESPONSIVE STYLES FOR MOBILE & TABLET
+           ======================================== */
+        
+        @media (max-width: 768px) {
+            /* Two-column to single-column layout */
+            .container {
+                flex-direction: column;
+                padding: 10px;
+            }
+            
+            .left-panel {
+                width: 100%;
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .right-panel {
+                width: 100%;
+                padding: 15px;
+            }
+            
+            /* Adjust heading sizes */
+            h1 {
+                font-size: 32px;
+            }
+            
+            h2 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+            
+            /* Adjust narrative text */
+            .narrative {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+            
+            /* Fix swim lanes for mobile */
+            .swim-lane {
+                margin-bottom: 25px;
+                position: relative;
+                min-height: 70px;
+            }
+            
+            .lane-label {
+                width: 100%;
+                margin-bottom: 8px;
+                position: relative;
+                left: 0;
+                font-size: 12px !important;
+            }
+            
+            /* CRITICAL: Override inline absolute positioning for bars on mobile */
+            .swim-lane > div[style*="position: absolute"] {
+                position: relative !important;
+                left: 0 !important;
+                right: auto !important;
+                width: 100% !important;
+                padding-left: 0 !important;
+            }
+            
+            .swim-lane .lane-bar {
+                position: relative !important;
+                left: 0 !important;
+                width: 100% !important;
+                margin-top: 8px;
+                min-height: 14px;
+            }
+            
+            /* Make bar links highly visible and readable on mobile */
+            .swim-lane .lane-bar + div,
+            .swim-lane div[style*="padding-left: 10px"] {
+                position: relative !important;
+                left: 0 !important;
+                width: 100% !important;
+                padding-left: 8px !important;
+                margin-top: 8px;
+                background: rgba(255, 255, 255, 0.1);
+                padding: 8px;
+                border-radius: 4px;
+            }
+            
+            .swim-lane a {
+                color: #fff !important;
+                background: rgba(0, 0, 0, 0.2);
+                padding: 4px 8px;
+                border-radius: 3px;
+                text-decoration: none;
+                display: inline-block;
+                margin: 2px;
+                font-size: 11px !important;
+                font-weight: 700 !important;
+                text-shadow: 0 1px 3px rgba(0,0,0,0.7) !important;
+            }
+            
+            .swim-lane span[style*="color: white"] {
+                background: rgba(0, 0, 0, 0.15);
+                padding: 4px 6px;
+                border-radius: 3px;
+                text-shadow: 0 1px 3px rgba(0,0,0,0.7) !important;
+            }
+            
+            /* Timeline labels responsive */
+            .timeline-labels {
+                font-size: 11px;
+                padding-left: 0 !important;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+            
+            .timeline-labels span {
+                font-size: 11px;
+                flex: 0 0 auto;
+            }
+            
+            /* Area charts scale down */
+            .area-chart {
+                height: 180px !important;
+                margin-bottom: 20px;
+            }
+            
+            .area-chart svg {
+                height: 180px !important;
+            }
+            
+            /* Bar charts adjust */
+            .bar-chart {
+                height: 120px !important;
+            }
+            
+            /* Annotations adjust */
+            .annotation {
+                position: relative !important;
+                left: 0 !important;
+                top: 0 !important;
+                margin-bottom: 10px;
+                margin-top: 6px;
+                font-size: 11px;
+                display: block;
+                font-weight:400;
+            }
+            
+            /* Tooltips work better on mobile */
+            .tooltip {
+                width: 280px;
+                font-size: 11px;
+                line-height: 1.4;
+                max-width: 90vw;
+            }
+            
+            /* Goals/Meaning section */
+            .goals {
+                padding: 20px 15px;
+            }
+            
+            .goal-item {
+                margin-bottom: 20px;
+            }
+            
+            .goal-item strong {
+                font-size: 14px;
+                display: block;
+                margin-bottom: 8px;
+            }
+            
+            .goal-item p {
+                font-size: 13px;
+                line-height: 1.6;
+            }
+            
+            /* Projects section specific fixes */
+            div[style*="position: relative; height: 160px"],
+            div[style*="position: relative; height: 240px"] {
+                height: auto !important;
+                min-height: 100px;
+            }
+            
+            /* Hide complex SVG gridlines on mobile for cleaner look */
+            svg line[stroke="#ddd"] {
+                opacity: 0.1;
+            }
+            
+            /* Make SVG text more readable */
+            svg text {
+                font-size: 9px !important;
+            }
+            
+            /* Life elsewhere and other swim lane sections */
+            .swim-lanes {
+                height: auto !important;
+            }
+            
+            /* ===== ALL SWIM LANE SECTIONS (Experiments, Life elsewhere) ===== */
+            /* Override nested absolute positioning in swim lanes */
+            .swim-lane > div[style*="position: absolute; left: 160px"] {
+                position: relative !important;
+                left: 0 !important;
+                right: auto !important;
+                width: 100% !important;
+                height: auto !important;
+                top: auto !important;
+                margin-top: 10px;
+                display: block !important;
+            }
+            
+            /* Swim lane bars - make them full width */
+            .swim-lane .lane-bar {
+                position: relative !important;
+                left: 0 !important;
+                width: 100% !important;
+                margin-bottom: 8px;
+                display: block;
+            }
+            
+            /* Swim lane link containers */
+            .swim-lane > div[style*="position: absolute"] > div[style*="position: absolute; left:"],
+            .swim-lane > div[style*="position: absolute"] > div[style*="display: flex"] {
+                position: relative !important;
+                left: 0 !important;
+                top: auto !important;
+                width: 100% !important;
+                padding: 8px !important;
+                margin-top: 8px;
+                background: rgba(70, 130, 180, 0.08);
+                border-radius: 4px;
+                display: block !important;
+                flex-direction: column !important;
+                gap: 8px !important;
+            }
+            
+            /* All links in swim lanes */
+            .swim-lane a {
+                display: inline-block !important;
+                color: #4682B4 !important;
+                background: #fff !important;
+                padding: 8px 12px !important;
+                margin: 4px !important;
+                border-radius: 4px;
+                text-shadow: none !important;
+                font-size: 13px !important;
+                font-weight: 600 !important;
+                border: 2px solid #4682B4;
+                text-decoration: none !important;
+            }
+            
+            /* Text spans in swim lanes (for non-link content) */
+            .swim-lane span[style*="color: white"] {
+                color: #333 !important;
+                text-shadow: none !important;
+                background: rgba(70, 130, 180, 0.1);
+                padding: 4px 8px;
+                border-radius: 3px;
+                display: inline-block;
+            }
+            
+            /* ===== PROJECTS SECTION SPECIFIC FIXES ===== */
+            /* Target the Projects section container */
+            div[style*="height: 160px"] {
+                height: auto !important;
+                min-height: auto !important;
+            }
+            
+            /* Projects section: Override absolute positioning for tracks */
+            div[style*="height: 160px"] > div > div[style*="position: absolute; width: 100%; height: 24px"] {
+                position: relative !important;
+                height: auto !important;
+                min-height: 90px !important;
+                margin-bottom: 20px !important;
+                padding-bottom: 15px;
+                border-bottom: 1px solid #e0e0e0;
+            }
+            
+            /* Projects: Label container */
+            div[style*="height: 160px"] > div > div > div[style*="position: absolute; left: 0; width: 150px"] {
+                position: relative !important;
+                width: 100% !important;
+                left: 0 !important;
+                margin-bottom: 12px;
+                display: block;
+                font-size: 13px !important;
+                font-weight: 600;
+                color: #222 !important;
+            }
+            
+            /* Projects: Bar and link container */
+            div[style*="height: 160px"] > div > div > div[style*="position: absolute; left: 160px"] {
+                position: relative !important;
+                left: 0 !important;
+                right: auto !important;
+                width: 100% !important;
+                display: block !important;
+                margin-top: 10px;
+                height: auto !important;
+            }
+            
+            /* Projects: Individual bars */
+            div[style*="height: 160px"] .lane-bar {
+                position: relative !important;
+                left: 0 !important;
+                width: 100% !important;
+                display: block !important;
+                margin-bottom: 10px;
+                height: 20px !important;
+            }
+            
+            /* Projects: Link containers that are positioned absolutely */
+            div[style*="height: 160px"] > div > div > div > div[style*="position: absolute; left:"] {
+                position: relative !important;
+                left: 0 !important;
+                right: auto !important;
+                width: 100% !important;
+                padding: 2px !important;
+                margin-top: 10px;
+                background: rgba(70, 130, 180, 0.05);
+                border-radius: 4px;
+                display: block !important;
+                height: auto !important;
+                top: auto !important;
+            }
+            
+            /* Projects: Links inside these containers */
+            div[style*="height: 160px"] a {
+                display: inline-block !important;
+                color: #4682B4 !important;
+                background: #fff !important;
+                padding: 8px 14px !important;
+                margin: 5px !important;
+                border-radius: 4px;
+                text-shadow: none !important;
+                font-size: 11px !important;
+                font-weight: 500 !important;
+                border: 2px solid #4682B4;
+                text-decoration: none !important;
+            }
+            
+            /* Projects: Hide the SVG gridlines on mobile */
+            div[style*="height: 160px"] svg {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Extra small mobile adjustments */
+            h1 {
+                font-size: 28px;
+            }
+            
+            h2 {
+                font-size: 18px;
+            }
+            
+            .narrative {
+                font-size: 13px;
+            }
+            
+            .lane-label {
+                font-size: 11px !important;
+            }
+            
+            /* Make tooltips even more compact on very small screens */
+            .tooltip {
+                left: 5px;
+                right: 5px;
+                padding: 12px;
+                font-size: 11px;
+                max-width: calc(100vw - 20px);
+            }
+            
+            .tooltip::after {
+                left: 25px;
+            }
+            
+            /* Reduce padding */
+            .left-panel,
+            .right-panel {
+                padding: 10px;
+            }
+            
+            .viz-section {
+                margin-bottom: 25px;
+                padding: 10px;
+            }
+            
+            /* Make swim lane links stack vertically on very small screens */
+            .swim-lane a,
+            div[style*="height: 160px"] a {
+                display: block !important;
+                margin: 6px 0 !important;
+                text-align: center;
+                width: 100% !important;
+                box-sizing: border-box;
+            }
+            
+            /* Adjust timeline */
+            .timeline-labels span {
+                font-size: 10px;
+            }
+            
+            /* Scale down area charts further */
+            .area-chart {
+                height: 150px !important;
+            }
+            
+            .area-chart svg {
+                height: 150px !important;
+            }
+            
+            /* SVG text even smaller */
+            svg text {
+                font-size: 24px !important;
+            }
+        }
+        /* =====================================================
+           MOBILE ADDITIONS — purely additive.
+           Nothing above this line is touched.
+           Fixes: Experiments (height:130px), inner wrapper
+           (height:140px), container padding, SVG containers.
+           ===================================================== */
+
+        @media (max-width: 768px) {
+
+            /* Container padding — grid layout doesn't use flex-direction */
+            .container {
+                padding: 12px !important;
+                gap: 16px !important;
+            }
+
+            /* Tighter section padding on mobile */
+            .viz-section {
+                padding: 16px 12px !important;
+            }
+
+            .goals {
+                padding: 16px 12px !important;
+            }
+
+            /* ── Experiments outer wrapper (height:130px) ──────── */
+            div[style*="position: relative; height: 130px"] {
+                height: auto !important;
+                min-height: auto !important;
+            }
+
+            /* ── Inner height:140px wrapper (Experiments + Projects) */
+            div[style*="position: relative; height: 140px"] {
+                height: auto !important;
+            }
+
+            /* ── Experiments: hide gridlines SVG ────────────────── */
+            div[style*="height: 130px"] svg {
+                display: none;
+            }
+
+            /* ── Experiments: each track row ────────────────────── */
+            div[style*="height: 130px"] > div > div[style*="position: absolute; width: 100%; height: 24px"] {
+                position: relative !important;
+                height: auto !important;
+                min-height: 80px !important;
+                top: auto !important;
+                width: 100% !important;
+                margin-bottom: 16px !important;
+                padding-bottom: 12px;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            /* ── Experiments: label in each track ───────────────── */
+            div[style*="height: 130px"] > div > div > div[style*="position: absolute; left: 0; width: 150px"] {
+                position: relative !important;
+                width: 100% !important;
+                left: 0 !important;
+                display: block;
+                font-size: 13px !important;
+                font-weight: 600;
+                color: #222 !important;
+                margin-bottom: 8px;
+            }
+
+            /* ── Experiments: bar + link area ────────────────────── */
+            div[style*="height: 130px"] > div > div > div[style*="position: absolute; left: 160px"] {
+                position: relative !important;
+                left: 0 !important;
+                right: auto !important;
+                width: 100% !important;
+                height: auto !important;
+                top: auto !important;
+                display: block !important;
+            }
+
+            /* ── Experiments: the bars ───────────────────────────── */
+            div[style*="height: 130px"] .lane-bar {
+                position: relative !important;
+                left: 0 !important;
+                width: 100% !important;
+                display: block !important;
+                margin-bottom: 8px;
+                height: 20px !important;
+            }
+
+            /* ── Experiments: link/text containers (not the bar itself) */
+            div[style*="height: 130px"] > div > div > div > div[style*="position: absolute; left:"]:not(.lane-bar) {
+                position: relative !important;
+                left: 0 !important;
+                top: auto !important;
+                right: auto !important;
+                width: 100% !important;
+                height: auto !important;
+                line-height: normal !important;
+                overflow: visible !important;
+                white-space: normal !important;
+                background: rgba(70, 130, 180, 0.05);
+                border-radius: 4px;
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 6px !important;
+            }
+
+            /* ── Experiments: links ──────────────────────────────── */
+            div[style*="height: 130px"] a {
+                display: inline-block !important;
+                color: #4682B4 !important;
+                background: #fff !important;
+                padding: 6px 12px !important;
+                margin: 2px !important;
+                border-radius: 4px;
+                text-shadow: none !important;
+                font-size: 12px !important;
+                font-weight: 600 !important;
+                border: 1.5px solid #4682B4;
+                text-decoration: none !important;
+                white-space: nowrap !important;
+            }
+
+            /* ── Experiments: white text spans → dark on mobile ─── */
+            div[style*="height: 130px"] span[style*="color: white"] {
+                color: #333 !important;
+                text-shadow: none !important;
+                background: rgba(70, 130, 180, 0.08);
+                padding: 4px 8px;
+                border-radius: 3px;
+                display: inline-block;
+            }
+
+            /* ── Life elsewhere outer div (height:170px) ─────────── */
+            div[style*="position: relative; height: 170px"] {
+                height: auto !important;
+            }
+
+            /* ── area-chart containers ────────────────────────────── */
+            .area-chart {
+                height: auto !important;
+                min-height: 120px;
+            }
+
+            /* ── SVG sections: full-width proportional scaling ────── */
+            .area-chart svg,
+            .viz-section svg[viewBox] {
+                width: 100% !important;
+                height: auto !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 8px !important;
+            }
+            .viz-section,
+            .goals {
+                padding: 12px 8px !important;
+            }
+            /* Experiments links slightly smaller on very small screens */
+            div[style*="height: 130px"] a {
+                font-size: 11px !important;
+                padding: 5px 8px !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- LEFT SIDE - NARRATIVE -->
+        <div class="narrative">
+            <h1>Vinish Garg</h1>
+            
+            <div class="narrative-section highlight">
+                <p style="font-size: 16px; font-weight: bold;">I am still searching.</p>
+                <p>The foundation is at the intersections, not within the teams or functions.</p>
+            </div>
+            
+            <div class="symbol">───</div>
+
+            <div class="narrative-section">
+                <p>Working on the foundational intersection of product—for positioning, onboarding, UX, marketability, and content design and strategy, with a system thinking lens to support their goals.</p>
+            </div>
+
+            <div class="symbol">───</div>
+            
+            <div class="narrative-section">
+                <p>Speed is not in faster shipping. <a href="https://www.vinishgarg.com/speed-is-not-in-faster-shipping/" target="_blank" style="color: rgb(240, 248, 122); text-decoration: none; font-weight: 600; white-space: nowrap;">Link</a></p>
+                <p>Products die because of lack of conversations. <a href="https://www.vinishgarg.com/products-die-because-of-lack-of-conversations/" target="_blank" style="color: rgb(240, 248, 122); text-decoration: none; font-weight: 600; white-space: nowrap;">Link</a></p>
+                <p>Product intelligence. <a href="https://www.vinishgarg.com/modern-team-products-should-build-product-intelligence-capability-in-the-teams/" target="_blank" style="color: rgb(240, 248, 122); text-decoration: none; font-weight: 600; white-space: nowrap;">Link</a></p>
+                <p>Design is NOT hard. <a href="https://www.vinishgarg.com/design-is-not-hard/" target="_blank" style="color: rgb(240, 248, 122); text-decoration: none; font-weight: 600; white-space: nowrap;">Link</a></p>
+                <p>On high quality products. <a href="https://www.vinishgarg.com/on-hight-quality-products-and-why-products-fail/" target="_blank" style="color: rgb(240, 248, 122); text-decoration: none; font-weight: 600; white-space: nowrap;">Link</a></p>
+                <p>Engineering and UX. <a href="https://www.vinishgarg.com/why-do-we-separate-engineering-and-ux/" target="_blank" style="color: rgb(240, 248, 122); text-decoration: none; font-weight: 600; white-space: nowrap;">Link</a></p>
+                <p>Inspiring leaders need learning teams. <a href="https://www.vinishgarg.com/inspiring-leaders-need-learning-teams-to-support-the-organization-goals/" target="_blank" style="color: rgb(240, 248, 122); text-decoration: none; font-weight: 600; white-space: nowrap;">Link</a></p>
+                <p>Design and content systems for product metrics. <a href="https://www.vinishgarg.com/we-need-content-and-design-systems-that-support-product-metrics/" target="_blank" style="color: rgb(240, 248, 122); text-decoration: none; font-weight: 600; white-space: nowrap;">Link</a></p>
+                <p>The state of design, 2024. <a href="https://www.designcriticalthinking.com/the-state-of-design-an-unnecessary-topic-to-write-about-by-vinish-garg/" target="_blank" style="color: rgb(240, 248, 122); text-decoration: none; font-weight: 600; white-space: nowrap;">Link</a></p>
+
+            </div>
+            
+            <div class="narrative-section" style="text-align: center; background: #1a1a1a; border: 8px solid #F0F87A;">
+                <div class="tomato">🍅</div>
+                <p>A grandma raised a tomato somewhere. <a href="https://medium.com/@vingar/when-a-grandmother-raises-a-tomato-c0fab0b4192c" target="_blank" style="color: rgb(240, 248, 122); text-decoration: none; font-weight: 600; white-space: nowrap;">See article</a></p><p>“My grandmother told me that our tongue was our most important organ—working or non-working. Like a zipper.”</p>
+            </div>
+        </div>
+        
+        <!-- RIGHT SIDE - VISUALIZATIONS -->
+        <div class="visualizations">
+            
+            <!-- SECTION 1: WHO I THOUGHT I'D BECOME - REMOVED -->
+            
+            <!-- SECTION 2: METHOD OF LEARNING -->
+            <div class="viz-section">
+                <h2>Methods</h2>
+                <div class="area-chart">
+                    <svg viewBox="0 0 1020 180" width="100%" height="180" preserveAspectRatio="xMidYMid meet" style="position: absolute; bottom: 0; display:block;">
+                        <!-- Practice/Client Work (baseline) -->
+                        <path d="M 0,180 L 0,140 L 1020,115 L 1020,180 Z" 
+                              fill="#4682B4" opacity="0.6"/>
+                        <text x="10" y="135" font-size="14" fill="#222">Practice</text>
+                        
+                        <!-- Reading/Following Experts -->
+                        <path d="M 0,140 L 120,100 L 240,90 L 360,110 L 480,120 L 1020,115 L 1020,180 L 0,180 Z" 
+                              fill="#5F9EA0" opacity="0.5"/>
+                        <text x="80" y="95" font-size="14" fill="#222">Blogs, newsletters</text>
+                        
+                        <!-- Community Engagement -->
+                        <path d="M 120,100 L 240,70 L 480,60 L 720,50 L 960,40 L 1020,35 L 1020,180 L 120,180 Z" 
+                              fill="#87CEEB" opacity="0.5"/>
+                        <text x="350" y="65" font-size="14" fill="#222">Communities</text>
+                        
+                        <!-- Learning from Product Leaders -->
+                        <path d="M 360,110 L 480,80 L 600,60 L 720,70 L 840,85 L 960,90 L 1020,92 L 1020,180 L 360,180 Z" 
+                              fill="#00CED1" opacity="0.5"/>
+                        <text x="520" y="70" font-size="14" fill="#222">Product leaders</text>
+                        
+                        <!-- Consulting (2016-2020) -->
+                        <path d="M 600,180 L 600,110 L 680,95 L 760,90 L 800,95 L 800,180 Z" 
+                              fill="#B0E0E6" opacity="0.6"/>
+                        <text x="650" y="100" font-size="14" fill="#222">Consulting</text>
+                        
+                        <!-- Volunteering, Writing (2016-Present) -->
+                        <path d="M 600,180 L 600,130 L 720,110 L 840,100 L 960,95 L 1020,90 L 1020,180 Z" 
+                              fill="#ADD8E6" opacity="0.5"/>
+                        <text x="780" y="105" font-size="14" fill="#222">Volunteering, Consulting</text>
+                        
+                        <!-- Teaching -->
+                        <path d="M 480,120 L 600,100 L 720,70 L 840,50 L 960,30 L 1020,25 L 1020,180 L 480,180 Z" 
+                              fill="#7FCDCD" opacity="0.6"/>
+                        <text x="750" y="55" font-size="14" fill="#222">Teaching</text>
+                    </svg>
+                    
+                    <div class="annotation" style="left: 11.8%; top: 40px;">
+                        <span class="milestone">2008-2010: "Connecting with experts"
+                            <span class="tooltip">Started following global content strategy experts: Scott Abel, Mark Baker, Tom Johnson, Larry Kunz, Marcia R. Johnston, Karen McGrane, Michael Andrews, Christina Wodtke. Discussions and building knowledge.</span>
+                        </span>
+                    </div>
+                    
+                    <div class="annotation" style="left: 36.3%; top: 10px;">
+                        <span class="milestone">2016: "Getting into products"
+                            <span class="tooltip">Shifted focus to understanding product viability from Dan Martell, Fred Wilson, Ryan Hoover, Patrick Campbell, Tomasz Tunguz, First Round Review, Mattermark, and more. Connecting UX to products and business goals.</span>
+                        </span>
+                    </div>
+                    
+                    <div class="annotation" style="left: 78.4%;">
+                        <span class="milestone">2020-Present: Practice by practice
+                            <span class="tooltip">Apply the design, content, and product thinking via consulting work. Learning by doing remains the foundation of all my practice areas.</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="timeline-labels">
+                    <span>2004</span>
+                    <span>2008</span>
+                    <span>2012</span>
+                    <span>2016</span>
+                    <span>2020</span>
+                    <span>2024</span>
+                    <span>2026</span>
+                </div>
+            </div>
+            
+            <!-- SECTION 4: PROJECTS -->
+                <div class="viz-section">
+                    <h2>Experiments</h2>
+                    <div style="position: relative; height: 130px; margin: 20px 0;">
+                        <!-- Vertical gridlines for timeline reference -->
+                        <svg width="100%" height="160" style="position: absolute; top: 0; left: 0; pointer-events: none;">
+                            <!-- Grid lines -->
+                                    <line x1="0%" y1="0" x2="0%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                                    <line x1="14.3%" y1="0" x2="14.3%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                                    <line x1="28.6%" y1="0" x2="28.6%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                                    <line x1="42.9%" y1="0" x2="42.9%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                                    <line x1="57.1%" y1="0" x2="57.1%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                                    <line x1="71.4%" y1="0" x2="71.4%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                                    <line x1="85.7%" y1="0" x2="85.7%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                                    <line x1="100%" y1="0" x2="100%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                                </svg>
+                                
+                                <!-- Track containers with labels on left -->
+                                <div style="position: relative; height: 140px;">
+                                    <!-- Track 1: Content Hug (2015-2016) -->
+                                    <div style="position: absolute; width: 100%; height: 24px; top: 0px;">
+                                        <div style="position: absolute; left: 0; width: 150px; font-size: 12px; color: #222; padding-top: 3px; font-weight: 500;">
+                                            <span class="milestone">Interviewed
+                                                <span class="tooltip">Hosted industry conversations and interviews with thought leaders. Featured in multiple interviews exploring content strategy, UX, and product thinking.</span>
+                                            </span>
+                                        </div>
+                                        <div style="position: absolute; left: 160px; right: 0; height: 100%; top: 0;">
+                                            <div class="lane-bar active" style="left:44%; width: 45%; background: #4682B4; position: absolute; top: 6px; height: 18px;"></div>
+                                            <div style="position: absolute; left: 44%; top: 6px; padding-left: 10px; font-size: 11px; display: flex; gap: 24px; align-items: center; height: 12px; line-height: 12px; flex-wrap: nowrap; overflow: hidden;">
+                                                <a href="https://ellessmedia.com/csi/vinish-garg/" target="_blank" style="color: white; text-decoration: none; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap;">Interview 1 →</a>
+                                                <a href="https://www.teodorapetkova.com/a-brand-a-hero-and-a-delight-well-designed-a-dialogue-with-vinish-garg/" target="_blank" style="color: white; text-decoration: none; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap;">Interview 2 →</a>
+                                                <a href="https://www.vinishgarg.com/a-walk-in-chandigarh/" target="_blank" style="color: white; text-decoration: none; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap;">Interview 3 →</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Track 3: My conference (2018-2023) -->
+                                    <div style="position: absolute; width: 100%; height: 24px; top: 28px;">
+                                        <div style="position: absolute; left: 0; width: 150px; font-size: 12px; color: #222; padding-top: 3px; font-weight: 500;">
+                                            <span class="milestone">Curation
+                                                <span class="tooltip">Ran multiple curation platforms: Paper.li daily digests, Revue newsletter, and Substack. Curated and shared valuable content for the design and product community.</span>
+                                            </span>
+                                        </div>
+                                        <div style="position: absolute; left: 160px; right: 0; height: 100%; top: 0;">
+                                            <div class="lane-bar active" style="left: 25%; width: 65%; background: #6b8d7c; position: absolute; top: 6px; height: 18px;"></div>
+                                            <div style="position: absolute; left: 25%; top: 6px; padding-left: 10px; font-size: 11px; display: flex; gap: 24px; align-items: center; height: 12px; line-height: 12px; flex-wrap: nowrap; overflow: hidden;">
+                                                <span style="color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap;">Paper.li, Revue, Storify, Somewhere</span>
+                                                <span class="milestone" style="color: white; font-weight: 600; cursor: pointer; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap;">
+                                                    <a href="https://vinishgarg.substack.com/p/oxyllects-2" target="_blank" style="color: white; text-decoration: none; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap;">Substack →</a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Track 5: Austria Lecture (2020-2026) -->
+                                    <div style="position: absolute; width: 100%; height: 24px; top: 56px;">
+                                        <div style="position: absolute; left: 0; width: 150px; font-size: 12px; color: #222; padding-top: 3px; font-weight: 500;">
+                                            <span class="milestone">Interests
+                                                <span class="tooltip">
+                                                    • MatterMark, Mark Suster, Fred Wilson, Tomasz Tunguz, Dan Martell, First Round Capital, the Buffer blog, and many more<br><br>
+                                                    • ICC and many content strategy and UX conferences, Twitter<br><br>
+                                                    • Co-matter, SPACE10, WePresent, Owtcome, Donut Economy, and many others<br><br>
+                                                    • The Fifth Discipline, by Peter Senge
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div style="position: absolute; left: 160px; right: 0; height: 100%; top: 0;">
+                                            <div class="lane-bar active" style="left: 35%; width: 65%; background: #63a7c2; position: absolute; top: 6px; height: 18px;"></div>
+                                            <div style="position: absolute; left: 35%; top: 6px; padding-left: 10px; font-size: 11px; height: 12px; line-height: 12px; overflow: hidden; white-space: nowrap;">
+                                                <span style="color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.5); font-size: 11px;">Hover "Interests" label for details →</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Track 6: Quoted (2015-2024) -->
+                                    <div style="position: absolute; width: 100%; height: 24px; top: 84px;">
+                                        <div style="position: absolute; left: 0; width: 150px; font-size: 12px; color: #222; padding-top: 3px; font-weight: 500;">
+                                            <span class="milestone">Product Hunt
+                                                <span class="tooltip">Active Product Hunt contributor. Replying to Ryan Hoover on their InVision mockups and engaging with the startup community.</span>
+                                            </span>
+                                        </div>
+                                        <div style="position: absolute; left: 160px; right: 0; height: 100%; top: 0;">
+                                            <div class="lane-bar ended" style="left: 40%; width: 40%; background: #945d45; position: absolute; top: 6px; height: 18px;"></div>
+                                            <div style="position: absolute; left: 40%; top: 6px; padding-left: 10px; font-size: 11px; height: 12px; line-height: 12px; overflow: hidden; white-space: nowrap;">
+                                                <span style="color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.5); font-size: 11px;">Early contributor, spoke to hundreds of founders</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Timeline labels -->
+                            <div class="timeline-labels" style="margin-top: 10px;">
+                                <span>2004</span>
+                                <span>2008</span>
+                                <span>2012</span>
+                                <span>2016</span>
+                                <span>2020</span>
+                                <span>2024</span>
+                                <span>2026</span>
+                            </div>
+                            <p style="font-size: 12px; color: #000000; margin-top: 10px; font-style: normal;">
+                                My experiments in curation, being interviewed is such a great learning, and had lots of discussions with industry leaders and experts.</p>
+                        </div>
+            
+            
+            <!-- SECTION 4: PROJECTS -->
+            <div class="viz-section">
+                <h2>Projects</h2>
+                <div style="position: relative; height: 160px; margin: 20px 0;">
+                    <!-- Vertical gridlines for timeline reference -->
+                    <svg width="100%" height="160" style="position: absolute; top: 0; left: 0; pointer-events: none;">
+                        <!-- Grid lines -->
+                        <line x1="0%" y1="0" x2="0%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                        <line x1="14.3%" y1="0" x2="14.3%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                        <line x1="28.6%" y1="0" x2="28.6%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                        <line x1="42.9%" y1="0" x2="42.9%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                        <line x1="57.1%" y1="0" x2="57.1%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                        <line x1="71.4%" y1="0" x2="71.4%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                        <line x1="85.7%" y1="0" x2="85.7%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                        <line x1="100%" y1="0" x2="100%" y2="140" stroke="#ddd" stroke-width="1" opacity="0.3"/>
+                    </svg>
+                    
+                    <!-- Track containers with labels on left -->
+                    <div style="position: relative; height: 140px;">
+                        <!-- Track 1: Content Hug (2015-2016) -->
+                        <div style="position: absolute; width: 100%; height: 24px; top: 0px;">
+                            <div style="position: absolute; left: 0; width: 150px; font-size: 12px; color: #222; padding-top: 3px; font-weight: 500;">
+                                <span class="milestone">Content Hug
+                                    <span class="tooltip">A small curation for content strategy, information architects, and technical writers, and got positive reviews from the community.</span>
+                                </span>
+                            </div>
+                            <div style="position: absolute; left: 160px; right: 0; height: 100%;">
+                                <div class="lane-bar ended" style="left: 45%; width: 8%; position: absolute; top: 6px; height: 18px; background: #ADD8E6;"></div>
+                                <div style="position: absolute; left: 45%; top: 6px; padding-left: 10px; font-size: 10px; height: 12px; line-height: 12px;">
+                                    <a href="https://medium.com/@vingar/contenthug-makers-story-d4b548f06795#.t18k07dcg" target="_blank" style="color: white; text-decoration: none; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap;">Link →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Track 2: Speaking (2011-2024) -->
+                        <div style="position: absolute; width: 100%; height: 24px; top: 24px;">
+                            <div style="position: absolute; left: 0; width: 150px; font-size: 12px; color: #222; padding-top: 3px; font-weight: 500;">
+                                Speaking
+                            </div>
+                            <div style="position: absolute; left: 160px; right: 0; height: 100%;">
+                                <div class="lane-bar active" style="left: 31.8%; width: 59.1%; position: absolute; top: 6px; height: 18px; background: #4682B4;"></div>
+                                <!-- Talk 1 - positioned at ~2013 (left: 41%) -->
+                                <div style="position: absolute; left: 41%; top: 6px; font-size: 11px; height: 12px; line-height: 12px; max-width: 18%;">
+                                    <a href="https://docs.google.com/presentation/d/1tE9C8RMLWILXSmFcvlW0n_8w7JUF79J8ILeMlG2Rr5s/edit?pli=1&slide=id.g1312510d3d9_0_1#slide=id.g1312510d3d9_0_1" target="_blank" style="color: white; text-decoration: none; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap;">Talk 1 →</a>
+                                </div>
+                                <!-- Talk 2 - positioned at ~2017 (left: 61%) -->
+                                <div style="position: absolute; left: 61%; top: 6px; font-size: 11px; height: 12px; line-height: 12px; max-width: 18%;">
+                                    <a href="https://docs.google.com/presentation/d/1SDiRn-KOqUhulGrkN6BCd2TViyW5Xx69hbQHvVhsCr8/edit?slide=id.p#slide=id.p" target="_blank" style="color: white; text-decoration: none; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap;">Talk 2 →</a>
+                                </div>
+                                <!-- Talk 3 - positioned at ~2021 (left: 80%) -->
+                                <div style="position: absolute; left: 80%; top: 6px; font-size: 11px; height: 12px; line-height: 12px; max-width: 18%;">
+                                    <a href="https://docs.google.com/presentation/d/1PONeLj0m9B9IQBFyXWhi_SnIuQyr1YrANCZXO-R816Q/edit?slide=id.g1312510d3d9_0_1#slide=id.g1312510d3d9_0_1" target="_blank" style="color: white; text-decoration: none; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap;">Talk 3 →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Track 3: My conference (2018-2023) -->
+                        <div style="position: absolute; width: 100%; height: 24px; top: 48px;">
+                            <div style="position: absolute; left: 0; width: 150px; font-size: 12px; color: #222; padding-top: 3px; font-weight: 500;">
+                                <span class="milestone">My conference
+                                    <span class="tooltip">My product—an international conference for a full-cycle product experience for sponsors, speakers, participants, and registrations lifecycle</span>
+                                </span>
+                            </div>
+                            <div style="position: absolute; left: 160px; right: 0; height: 100%;">
+                                <div class="lane-bar ended" style="left: 63.6%; width: 22.8%; position: absolute; top: 6px; height: 18px; background: #5F9EA0;"></div>
+                                <div style="position: absolute; left: 63.6%; top: 6px; padding-left: 10px; font-size: 10px; height: 12px; line-height: 12px;">
+                                    <a href="https://www.outcomeconf.com/" target="_blank" style="color: white; text-decoration: none; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap;">Outcome →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Track 4: Hosting series (2016-2020) -->
+                        <div style="position: absolute; width: 100%; height: 24px; top: 72px;">
+                            <div style="position: absolute; left: 0; width: 150px; font-size: 12px; color: #222; padding-top: 3px; font-weight: 500;">
+                                Hosting series
+                            </div>
+                            <div style="position: absolute; left: 160px; right: 0; height: 100%;">
+                                <div class="lane-bar ended" style="left: 50%; width: 18%; position: absolute; top: 6px; height: 18px; background: #87CEEB;"></div>
+                                <div style="position: absolute; left: 50%; top: 6px; padding-left: 10px; font-size: 11px; display: flex; gap: 10px; align-items: center; height: 12px; line-height: 12px; flex-wrap: nowrap;">
+                                    <a href="https://medium.com/content-conversations/content-strategy-in-financial-corporations-an-interview-with-lauren-lucchese-of-capital-one-c1acfa346220" target="_blank" style="color: white; text-decoration: none; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap;">Capital One →</a>
+                                    <a href="https://medium.com/content-conversations?source=post_page---publication_nav-ce2113425a0d-c1acfa346220---------------------------------------" target="_blank" style="color: white; text-decoration: none; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap;">All →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Track 5: Austria Lecture (2020-2026) -->
+                        <div style="position: absolute; width: 100%; height: 24px; top: 96px;">
+                            <div style="position: absolute; left: 0; width: 150px; font-size: 12px; color: #222; padding-top: 3px; font-weight: 500;">
+                                <span class="milestone">Austria Lecture
+                                    <span class="tooltip">Teaching content design (content design, UX, products, marketing) in the masters program in content strategy, in Graz University, Austria</span>
+                                </span>
+                            </div>
+                            <div style="position: absolute; left: 160px; right: 0; height: 100%;">
+                                <div class="lane-bar active" style="left: 65%; width: 34%; position: absolute; top: 6px; height: 18px; background: #7FCDCD;"></div>
+                                <div style="position: absolute; left: 72.7%; top: 6px; padding-left: 10px; font-size: 11px; height: 12px; line-height: 12px;">
+                                    <a href="https://www.fh-joanneum.at/en/university/person/vinish-garg" target="_blank" style="color: white; text-decoration: none; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.5); white-space: nowrap;">Details →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Track 6: Quoted (2015-2024) -->
+                        <div style="position: absolute; width: 100%; height: 24px; top: 120px;">
+                            <div style="position: absolute; left: 0; width: 150px; font-size: 12px; color: #222; padding-top: 3px; font-weight: 500;">
+                                <span class="milestone">Quoted
+                                    <span class="tooltip">Quoted or mentioned by authors in their books including Mark Baker, by orgs and publishers—Zapier, ProfitWell, ContentEd, and others</span>
+                                </span>
+                            </div>
+                            <div style="position: absolute; left: 160px; right: 0; height: 100%;">
+                                <div class="lane-bar active" style="left: 48%; width: 40.9%; position: absolute; top: 6px; height: 16px; background: #B0E0E6;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Timeline labels -->
+                <div class="timeline-labels">
+                    <span>2004</span>
+                    <span>2008</span>
+                    <span>2012</span>
+                    <span>2016</span>
+                    <span>2020</span>
+                    <span>2024</span>
+                    <span>2026</span>
+                </div>
+                <p style="font-size: 12px; color: #000000; margin-top: 10px; font-style: normal;">
+                    Made Content Hug, running my international conference, hosting international guests, and teaching UX, content design, and products in Austria University.</p>
+            </div>
+            
+            <!-- NEW SECTION: LIFE ELSEWHERE — dot-and-line event timeline -->
+            <div class="viz-section">
+                <h2>Life elsewhere</h2>
+                <!--
+                    Timeline: 2004-2026 = 22 years → 1 year = 1020/22 = 46.36 px
+                    2016 = 12 × 46.36 = 556 px
+                    2021 = 17 × 46.36 = 788 px
+                    2024 = 20 × 46.36 = 927 px
+
+                    4 rows (each with label above, dot, duration line, link below):
+                    Row A y=45  → Letters to my son  (2016–now)
+                    Row B y=95  → The Fifth Discipline (2021–now)
+                    Row C y=140 → A walk in Chandigarh (2024 point)
+                    Row D y=140 → Steering (2024–now)   ← same y as C, but C is a point so no line confusion
+                    Axis y=185
+                    ViewBox height 210 gives breathing room
+                -->
+                <div style="position: relative; height: 170px; margin: 20px 0;">
+                    <svg viewBox="0 0 1020 210" width="100%" height="210" preserveAspectRatio="xMidYMid meet" style="display:block; overflow:visible;">
+
+                        <!-- ── Axis ────────────────────────────────── -->
+                        <line x1="0" y1="185" x2="1020" y2="185" stroke="#9aabba" stroke-width="1.5"/>
+                        <line x1="0"   y1="181" x2="0"   y2="189" stroke="#9aabba" stroke-width="1.5"/>
+                        <line x1="182" y1="181" x2="182" y2="189" stroke="#9aabba" stroke-width="1.5"/>
+                        <line x1="364" y1="181" x2="364" y2="189" stroke="#9aabba" stroke-width="1.5"/>
+                        <line x1="556" y1="181" x2="556" y2="189" stroke="#9aabba" stroke-width="1.5"/>
+                        <line x1="742" y1="181" x2="742" y2="189" stroke="#9aabba" stroke-width="1.5"/>
+                        <line x1="927" y1="181" x2="927" y2="189" stroke="#9aabba" stroke-width="1.5"/>
+                        <line x1="1020" y1="181" x2="1020" y2="189" stroke="#9aabba" stroke-width="1.5"/>
+
+                        <!-- ── ROW A: Letters to my son (2016–now, y=45) ── -->
+                        <!-- vertical guide from dot to axis -->
+                        <line x1="506" y1="45" x2="556" y2="185" stroke="#5F9EA0" stroke-width="1" stroke-dasharray="3,4" opacity="0.3"/>
+                        <!-- duration line -->
+                        <line x1="506" y1="45" x2="1015" y2="45" stroke="#5F9EA0" stroke-width="2.5" stroke-dasharray="7,4" opacity="0.6"/>
+                        <!-- dot -->
+                        <circle cx="506" cy="45" r="7" fill="#5F9EA0" stroke="#e8e4d8" stroke-width="2"/>
+                        <!-- label above -->
+                        <text x="506" y="30" font-size="14" fill="#222" font-weight="600" text-anchor="middle">Letters to my son</text>
+                        <!-- links BELOW the line (dark blue = readable on beige) -->
+                        <a href="https://medium.com/what-he-doesnt-ask/letter-to-my-son-into-their-teens-now-62bbbdc70e68" target="_blank">
+                            <text x="580" y="30" font-size="12" fill="#1a4a7a" font-weight="600" text-decoration="underline">teens →</text>
+                        </a>
+                        <a href="https://medium.com/what-he-doesnt-ask/letter-to-my-son-in-a-y-shaped-conversation-f2c7d44eded8" target="_blank">
+                            <text x="670" y="30" font-size="12" fill="#1a4a7a" font-weight="600" text-decoration="underline">seven →</text>
+                        </a>
+                        <a href="https://medium.com/what-he-doesnt-ask/letter-to-my-son-he-is-five-today-ef028d860142" target="_blank">
+                            <text x="760" y="30" font-size="12" fill="#1a4a7a" font-weight="600" text-decoration="underline">five →</text>
+                        </a>
+
+                        <!-- ── ROW B: The Fifth Discipline (2021–now, y=95) ── -->
+                        <line x1="740" y1="95" x2="788" y2="185" stroke="#4a8faa" stroke-width="1" stroke-dasharray="3,4" opacity="0.3"/>
+                        <line x1="740" y1="95" x2="1015" y2="95" stroke="#4a8faa" stroke-width="2.5" stroke-dasharray="7,4" opacity="0.6"/>
+                        <circle cx="740" cy="95" r="7" fill="#4a8faa" stroke="#e8e4d8" stroke-width="2"/>
+                        <!-- two-line label above -->
+                        <text x="740" y="85" font-size="14" fill="#222" font-weight="600" text-anchor="middle">The Fifth Discipline</text>
+                        <!-- link below -->
+                        <a href="https://www.youtube.com/watch?v=0QtQqZ6Q5-o" target="_blank">
+                            <text x="740" y="112" font-size="12" fill="#1a4a7a" font-weight="600" text-decoration="underline">A video →</text>
+                        </a>
+
+                        <!-- ── ROW C: A walk in Chandigarh (2024 point, y=140) ── -->
+                        <!-- label anchored right so it doesn't touch right edge -->
+                        <line x1="927" y1="140" x2="927" y2="185" stroke="#5F9EA0" stroke-width="1" stroke-dasharray="3,4" opacity="0.3"/>
+                        <circle cx="927" cy="140" r="7" fill="#5F9EA0" stroke="#e8e4d8" stroke-width="2"/>
+                        <!-- label well above dot (dot top=133, label at y=126) -->
+                        <text x="916" y="140" font-size="14" fill="#222" font-weight="600" text-anchor="end">A walk in Chandigarh</text>
+                        <!-- link well below dot (dot bottom=147, link at y=154) -->
+                        <a href="https://www.vinishgarg.com/a-walk-in-chandigarh/" target="_blank">
+                            <text x="854" y="154" font-size="14" fill="#1a4a7a" font-weight="600" text-decoration="underline" text-anchor="end">Interview →</text>
+                        </a>
+
+                        <!-- ── ROW D: Steering (2024–now, y=165) ── -->
+                        <line x1="927" y1="165" x2="927" y2="185" stroke="#5F9EA0" stroke-width="1" stroke-dasharray="3,4" opacity="0.3"/>
+                        <line x1="927" y1="165" x2="1015" y2="165" stroke="#5F9EA0" stroke-width="2.5" opacity="0.55"/>
+                        <circle cx="927" cy="165" r="7" fill="#5F9EA0" stroke="#e8e4d8" stroke-width="2"/>
+                        <!-- label above dot top (dot top=158, label at y=152) -->
+                        <text x="996" y="152" font-size="14" fill="#222" font-weight="600" text-anchor="end">Steering</text>
+                        <!-- link below dot bottom (dot bottom=172, link at y=178, axis=185) -->
+                        <a href="https://steeringhq.com/" target="_blank">
+                            <text x="996" y="178" font-size="12" fill="#1a4a7a" font-weight="600" text-decoration="underline" text-anchor="end">Details →</text>
+                        </a>
+
+                    </svg>
+                </div>
+                <div class="timeline-labels">
+                    <span>2004</span>
+                    <span>2008</span>
+                    <span>2012</span>
+                    <span>2016</span>
+                    <span>2020</span>
+                    <span>2024</span>
+                    <span>2026</span>
+                </div>
+                <p style="font-size: 12px; color: #000000; margin-top: 10px; font-style: normal;">
+                    Personal explorations: Walking experiences, letters to my son, a career design service for students, and a big influence from The Fifth Discipline.</p>
+            </div>
+            
+            <!-- SECTION 5: WHO I CONNECTED WITH -->
+            <div class="viz-section">
+                <h2>The lens</h2>
+                <div class="area-chart" style="height: 170px;">
+                    <svg viewBox="0 0 1020 200" width="100%" height="200" preserveAspectRatio="xMidYMid meet" style="display:block; overflow:visible;">
+                        <!-- Layer 1: Technical content strategy (2004-2012) -->
+                        <path d="M 0,180 L 0,100 L 100,90 L 200,85 L 300,90 L 380,100 L 380,180 Z" 
+                              fill="#5F9EA0" opacity="0.7" stroke="#4682B4" stroke-width="1"/>
+                        <text x="120" y="95" font-size="14" fill="#222">Technical content</text>
+                        
+                        <!-- Layer 2: Content, design, UX (2011-2018) -->
+                        <path d="M 300,180 L 300,110 L 420,90 L 520,80 L 620,85 L 920,95 L 720,180 Z" 
+                              fill="#87CEEB" opacity="0.7" stroke="#5F9EA0" stroke-width="1"/>
+                        <text x="400" y="90" font-size="14" fill="#222">Content strategy, UX</text>
+                        
+                        <!-- Layer 3: UX for product strategy (2015-2020) -->
+                        <path d="M 520,180 L 520,130 L 600,100 L 680,85 L 760,90 L 800,100 L 800,180 Z" 
+                              fill="#7FCDCD" opacity="0.7" stroke="#87CEEB" stroke-width="1"/>
+                        <text x="590" y="112" font-size="14" fill="#222">Products and SaaS</text>
+                        
+                        <!-- Layer 4: Systems thinking (2020-present) -->
+                        <path d="M 800,180 L 800,110 L 840,90 L 880,80 L 920,70 L 960,65 L 1020,60 L 1020,180 Z" 
+                              fill="#B0E0E6" opacity="0.7" stroke="#7FCDCD" stroke-width="1"/>
+                        <!-- split across two lines — never breaks mid-word -->
+                        <text x="812" y="95" font-size="12" fill="#222">Systems</text>
+                        <text x="812" y="112" font-size="12" fill="#222">thinking</text>
+                        
+                        <!-- Layer 5: Product thinking (2024-present, top layer) -->
+                        <path d="M 920,180 L 920,90 L 940,70 L 960,50 L 1000,40 L 1020,35 L 1020,180 Z" 
+                              fill="#4682B4" opacity="0.8" stroke="#2F5F7F" stroke-width="2"/>
+                        <!-- label placed well left of the narrow peak -->
+                        <text x="660" y="56" font-size="14" fill="#222" font-weight="bold">Holistic product thinking</text>
+                        
+                        <!-- Overlap indicators -->
+                        <line x1="330" y1="100" x2="330" y2="180" stroke="#4682B4" stroke-width="2" stroke-dasharray="4,4" opacity="0.5"/>
+                        <text x="240" y="192" font-size="12" fill="#555">2011: overlap begins</text>
+                        
+                        <line x1="520" y1="90" x2="520" y2="180" stroke="#4682B4" stroke-width="2" stroke-dasharray="4,4" opacity="0.5"/>
+                        <text x="445" y="192" font-size="12" fill="#555">2015: triple overlap</text>
+                        
+                        <line x1="800" y1="85" x2="800" y2="180" stroke="#4682B4" stroke-width="2" stroke-dasharray="4,4" opacity="0.5"/>
+                        <text x="738" y="192" font-size="12" fill="#555">2020: integration</text>
+                    </svg>
+                </div>
+                <div class="timeline-labels">
+                    <span>2004</span>
+                    <span>2008</span>
+                    <span>2012</span>
+                    <span>2016</span>
+                    <span>2020</span>
+                    <span>2024</span>
+                    <span>2026</span>
+                </div>
+                <p style="font-size: 12px; color: #000000; margin-top: 10px; font-style: normal;">
+                    The gains accumulated and integrated to shape the systems, synthesizing all those learnings and perspectives into product thinking.
+                </p>
+            </div>
+            
+            <!-- MEANING SECTION -->
+            <div class="goals">
+                <h2>Standards</h2>
+                
+                <div class="goal-item">
+                    <p>I always believe in defining certain standards of how we work and why we work in a given situation. I have often admired Stripe for their standards, it just shows in their product and in positioning. 
+                    <span class="milestone" style="font-size:12px; font-weight: bold; color: #4682B4; cursor: pointer;">Disclaimer
+                        <span class="tooltip">They may not be perfect and you might have your own experiences but every interaction with these two orgs shows their attention and care in the work.</span>
+                    </span>
+                    </p>
+                </div>
+                
+                <div class="goal-item">
+                    <p><strong>Library of best references</strong></p>
+                    <p>Stripe Docs for the Search UX, Tomasz Tunguz and Dave Kellogg, Intelligence Content Conference blog by Marcia Reifer Johnston, Netflix UX Writing, Reformation, LikeAGirl campaign, product wisdom shared by Brain Balfour, John Cutler, and Marty Cagan, Ha Phan and Christina Wodtke, Michael Andrews, Jeff Eaton, Noz Urbina, Civic tech practitioners including Shannon Mattern and Cyd Harrell, Kevin Richard of Design and Critical Thinking, and a few Slack communities that I am part of.</p>
+                </div>
+                
+                <div class="symbol">───</div>
+
+
+                <div class="goal-credits">
+                    <p>This page is inspired by <a href="https://worrydream.com/Bio2011/" target="_blank">Bret Victor</a>. Visual support credits <a href="https://claude.ai/" target="_blank">Claude</a>.</p>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
